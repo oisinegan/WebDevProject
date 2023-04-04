@@ -17,7 +17,7 @@ class DatabaseResetterConfig
     private $orm;
     private $odm;
     private $_usedProperties = [];
-    
+
     /**
      * @default true
      * @param ParamConfigurator|bool $value
@@ -27,10 +27,10 @@ class DatabaseResetterConfig
     {
         $this->_usedProperties['enabled'] = true;
         $this->enabled = $value;
-    
+
         return $this;
     }
-    
+
     public function orm(array $value = []): \Symfony\Config\ZenstruckFoundry\DatabaseResetter\OrmConfig
     {
         if (null === $this->orm) {
@@ -39,10 +39,10 @@ class DatabaseResetterConfig
         } elseif (0 < \func_num_args()) {
             throw new InvalidConfigurationException('The node created by "orm()" has already been initialized. You cannot pass values the second time you call orm().');
         }
-    
+
         return $this->orm;
     }
-    
+
     public function odm(array $value = []): \Symfony\Config\ZenstruckFoundry\DatabaseResetter\OdmConfig
     {
         if (null === $this->odm) {
@@ -51,10 +51,10 @@ class DatabaseResetterConfig
         } elseif (0 < \func_num_args()) {
             throw new InvalidConfigurationException('The node created by "odm()" has already been initialized. You cannot pass values the second time you call odm().');
         }
-    
+
         return $this->odm;
     }
-    
+
     public function __construct(array $value = [])
     {
         if (array_key_exists('enabled', $value)) {
@@ -62,24 +62,24 @@ class DatabaseResetterConfig
             $this->enabled = $value['enabled'];
             unset($value['enabled']);
         }
-    
+
         if (array_key_exists('orm', $value)) {
             $this->_usedProperties['orm'] = true;
             $this->orm = new \Symfony\Config\ZenstruckFoundry\DatabaseResetter\OrmConfig($value['orm']);
             unset($value['orm']);
         }
-    
+
         if (array_key_exists('odm', $value)) {
             $this->_usedProperties['odm'] = true;
             $this->odm = new \Symfony\Config\ZenstruckFoundry\DatabaseResetter\OdmConfig($value['odm']);
             unset($value['odm']);
         }
-    
+
         if ([] !== $value) {
             throw new InvalidConfigurationException(sprintf('The following keys are not supported by "%s": ', __CLASS__).implode(', ', array_keys($value)));
         }
     }
-    
+
     public function toArray(): array
     {
         $output = [];
@@ -92,7 +92,7 @@ class DatabaseResetterConfig
         if (isset($this->_usedProperties['odm'])) {
             $output['odm'] = $this->odm->toArray();
         }
-    
+
         return $output;
     }
 

@@ -15,7 +15,7 @@ class InstantiatorConfig
     private $alwaysForceProperties;
     private $service;
     private $_usedProperties = [];
-    
+
     /**
      * Whether or not to call an object's constructor during instantiation.
      * @default false
@@ -26,10 +26,10 @@ class InstantiatorConfig
     {
         $this->_usedProperties['withoutConstructor'] = true;
         $this->withoutConstructor = $value;
-    
+
         return $this;
     }
-    
+
     /**
      * Whether or not to allow extra attributes.
      * @default false
@@ -40,10 +40,10 @@ class InstantiatorConfig
     {
         $this->_usedProperties['allowExtraAttributes'] = true;
         $this->allowExtraAttributes = $value;
-    
+
         return $this;
     }
-    
+
     /**
      * Whether or not to skip setters and force set object properties (public/private/protected) directly.
      * @default false
@@ -54,10 +54,10 @@ class InstantiatorConfig
     {
         $this->_usedProperties['alwaysForceProperties'] = true;
         $this->alwaysForceProperties = $value;
-    
+
         return $this;
     }
-    
+
     /**
      * Customize the instantiator service.
      * @example my_instantiator
@@ -69,10 +69,10 @@ class InstantiatorConfig
     {
         $this->_usedProperties['service'] = true;
         $this->service = $value;
-    
+
         return $this;
     }
-    
+
     public function __construct(array $value = [])
     {
         if (array_key_exists('without_constructor', $value)) {
@@ -80,30 +80,30 @@ class InstantiatorConfig
             $this->withoutConstructor = $value['without_constructor'];
             unset($value['without_constructor']);
         }
-    
+
         if (array_key_exists('allow_extra_attributes', $value)) {
             $this->_usedProperties['allowExtraAttributes'] = true;
             $this->allowExtraAttributes = $value['allow_extra_attributes'];
             unset($value['allow_extra_attributes']);
         }
-    
+
         if (array_key_exists('always_force_properties', $value)) {
             $this->_usedProperties['alwaysForceProperties'] = true;
             $this->alwaysForceProperties = $value['always_force_properties'];
             unset($value['always_force_properties']);
         }
-    
+
         if (array_key_exists('service', $value)) {
             $this->_usedProperties['service'] = true;
             $this->service = $value['service'];
             unset($value['service']);
         }
-    
+
         if ([] !== $value) {
             throw new InvalidConfigurationException(sprintf('The following keys are not supported by "%s": ', __CLASS__).implode(', ', array_keys($value)));
         }
     }
-    
+
     public function toArray(): array
     {
         $output = [];
@@ -119,7 +119,7 @@ class InstantiatorConfig
         if (isset($this->_usedProperties['service'])) {
             $output['service'] = $this->service;
         }
-    
+
         return $output;
     }
 

@@ -12,7 +12,7 @@ class OdmConfig
 {
     private $objectManagers;
     private $_usedProperties = [];
-    
+
     /**
      * @param ParamConfigurator|list<ParamConfigurator|mixed> $value
      *
@@ -22,10 +22,10 @@ class OdmConfig
     {
         $this->_usedProperties['objectManagers'] = true;
         $this->objectManagers = $value;
-    
+
         return $this;
     }
-    
+
     public function __construct(array $value = [])
     {
         if (array_key_exists('object_managers', $value)) {
@@ -33,19 +33,19 @@ class OdmConfig
             $this->objectManagers = $value['object_managers'];
             unset($value['object_managers']);
         }
-    
+
         if ([] !== $value) {
             throw new InvalidConfigurationException(sprintf('The following keys are not supported by "%s": ', __CLASS__).implode(', ', array_keys($value)));
         }
     }
-    
+
     public function toArray(): array
     {
         $output = [];
         if (isset($this->_usedProperties['objectManagers'])) {
             $output['object_managers'] = $this->objectManagers;
         }
-    
+
         return $output;
     }
 

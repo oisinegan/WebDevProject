@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}welcome{% endblock %}
+
+{% block body %}
+
+
+    <table>
+        {% for food in foods %}
+            <tr>
+                <td>
+                    {{ food.name }}
+                </td>
+                <td>
+                    {{ food.phValue }}
+                </td>
+                <td>
+                    {% if food.isAcidic %}
+                        acidic
+                    {% else %}
+                        (not acidic)
+                    {% endif %}
+
+{#                    {{ food.acidString }}#}
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+
+{% endblock %}
