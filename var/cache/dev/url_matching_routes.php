@@ -13,9 +13,9 @@ return [
         '/_profiler/search_bar' => [[['_route' => '_profiler_search_bar', '_controller' => 'web_profiler.controller.profiler::searchBarAction'], null, null, null, false, false, null]],
         '/_profiler/phpinfo' => [[['_route' => '_profiler_phpinfo', '_controller' => 'web_profiler.controller.profiler::phpinfoAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
-        '/food' => [[['_route' => 'food', '_controller' => 'App\\Controller\\DefaultController::food'], null, null, null, false, false, null]],
-        '/' => [[['_route' => 'homepage', '_controller' => 'App\\Controller\\DefaultController::home'], null, null, null, false, false, null]],
-        '/coffee' => [[['_route' => 'coffee', '_controller' => 'App\\Controller\\DefaultController::coffee'], null, null, null, false, false, null]],
+        '/band' => [[['_route' => 'app_band_index', '_controller' => 'App\\Controller\\BandController::index'], null, ['GET' => 0], null, true, false, null]],
+        '/band/new' => [[['_route' => 'app_band_new', '_controller' => 'App\\Controller\\BandController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/band/member/new' => [[['_route' => 'app_band_member_new', '_controller' => 'App\\Controller\\BandMemberController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
@@ -34,7 +34,21 @@ return [
                         .'|(*:159)'
                     .')'
                 .')'
-                .'|/slug/([^/]++)/([^/]++)(*:192)'
+                .'|/band/(?'
+                    .'|([^/]++)(?'
+                        .'|(*:189)'
+                        .'|/edit(*:202)'
+                        .'|(*:210)'
+                    .')'
+                    .'|member(?'
+                        .'|(*:228)'
+                        .'|/([^/]++)(?'
+                            .'|(*:248)'
+                            .'|/edit(*:261)'
+                            .'|(*:269)'
+                        .')'
+                    .')'
+                .')'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -45,8 +59,14 @@ return [
         136 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        192 => [
-            [['_route' => 'slug', '_controller' => 'App\\Controller\\DefaultController::slug'], ['word1', 'word2'], null, null, false, true, null],
+        189 => [[['_route' => 'app_band_show', '_controller' => 'App\\Controller\\BandController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        202 => [[['_route' => 'app_band_edit', '_controller' => 'App\\Controller\\BandController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        210 => [[['_route' => 'app_band_delete', '_controller' => 'App\\Controller\\BandController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        228 => [[['_route' => 'app_band_member_index', '_controller' => 'App\\Controller\\BandMemberController::index'], [], ['GET' => 0], null, true, false, null]],
+        248 => [[['_route' => 'app_band_member_show', '_controller' => 'App\\Controller\\BandMemberController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        261 => [[['_route' => 'app_band_member_edit', '_controller' => 'App\\Controller\\BandMemberController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        269 => [
+            [['_route' => 'app_band_member_delete', '_controller' => 'App\\Controller\\BandMemberController::delete'], ['id'], ['POST' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],
