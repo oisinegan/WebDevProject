@@ -34,6 +34,10 @@ class AppFixtures extends Fixture
         $bm2->setBandRole("Singer");
         $bm2->setBand($band1);
 
+
+        $s1 = new Song();
+        $s1->setName("Wedding song");
+
         $manager->persist($band1);
         $manager->persist($bm1);
         $manager->persist($bm2);
