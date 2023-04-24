@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BandMember{% endblock %}
+
+{% block body %}
+    <h1>BandMember</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ band_member.id }}</td>
+            </tr>
+            <tr>
+                <th>FirstName</th>
+                <td>{{ band_member.firstName }}</td>
+            </tr>
+            <tr>
+                <th>LastName</th>
+                <td>{{ band_member.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ band_member.Email }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ band_member.password }}</td>
+            </tr>
+            <tr>
+                <th>BandRole</th>
+                <td>{{ band_member.bandRole }}</td>
+            </tr>
+            <tr>
+                <th>Band</th>
+                <td>{{ band_member.getBand }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_band_show' , {'id':  band_member.getBand.getId}) }}">back to list</a>
+
+    <a href="{{ path('app_band_member_edit', {'id': band_member.id}) }}">edit</a>
+
+    {{ include('band_member/_delete_form.html.twig') }}
+{% endblock %}
