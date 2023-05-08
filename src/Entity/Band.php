@@ -24,9 +24,18 @@ class Band
     #[ORM\OneToMany(mappedBy: 'band', targetEntity: BandMember::class)]
     private Collection $bandMembers;
 
+    #[ORM\OneToMany(mappedBy: 'band', targetEntity: BandSong::class)]
+    private Collection $bandSongs;
+
+    #[ORM\OneToMany(mappedBy: 'band', targetEntity: Event::class)]
+    private Collection $events;
+
+
     public function __construct()
     {
         $this->bandMembers = new ArrayCollection();
+        $this->bandSongs = new ArrayCollection();
+        $this->events = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -93,4 +102,69 @@ class Band
     {
         return $this->name;
     }
+
+    /**
+     * @return Collection<int, BandSong>
+     */
+    public function getBandSongs(): Collection
+    {
+        return $this->bandSongs;
+    }
+
+    public function addBandSong(BandSong $bandSong): self
+    {
+        if (!$this->bandSongs->contains($bandSong)) {
+            $this->bandSongs->add($bandSong);
+            $bandSong->setBand($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBandSong(BandSong $bandSong): self
+    {
+        if ($this->bandSongs->removeElement($bandSong)) {
+            // set the owning side to null (unless already changed)
+            if ($bandSong->getBand() === $this) {
+                $bandSong->setBand(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Event>
+     */
+    public function getEvents(): Collection
+    {
+        return $this->events;
+    }
+
+    public function addEvent(Event $event): self
+    {
+        if (!$this->events->contains($event)) {
+            $this->events->add($event);
+            $event->setBand($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvent(Event $event): self
+    {
+        if ($this->events->removeElement($event)) {
+            // set the owning side to null (unless already changed)
+            if ($event->getBand() === $this) {
+                $event->setBand(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Event>
+     */
+
 }

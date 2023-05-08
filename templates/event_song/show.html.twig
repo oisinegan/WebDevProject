@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EventSong{% endblock %}
+
+{% block body %}
+    <h1>EventSong</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ event_song.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_event_song_index') }}">back to list</a>
+
+    <a href="{{ path('app_event_song_edit', {'id': event_song.id}) }}">edit</a>
+
+    {{ include('event_song/_delete_form.html.twig') }}
+{% endblock %}

@@ -11,8 +11,11 @@
 <div class="example-wrapper">
     <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
+    See list of bands and events:
     <ul>
+        <li><a href="{{ path('app_band_index') }}">show</a></li>
+        <li><a href="{{ path('app_event_index') }}">show</a></li>
+        <li>Your controller at <a href="{{ 'C:/Users/jesse/OneDrive/Desktop/Year 3/oodp/Project/WebDevProject/src/Controller/BandController.php'|file_link(0) }}">src/Controller/BandController.php</a></li>
         <li>Your controller at <code><a href="{{ 'C:/Users/jesse/OneDrive/Desktop/Year 3/oodp/Project/WebDevProject/src/Controller/DefaultController.php'|file_link(0) }}">src/Controller/DefaultController.php</a></code></li>
         <li>Your template at <code><a href="{{ 'C:/Users/jesse/OneDrive/Desktop/Year 3/oodp/Project/WebDevProject/templates/default/index.html.twig'|file_link(0) }}">templates/default/index.html.twig</a></code></li>
     </ul>
