@@ -20,9 +20,7 @@
                 <td>{{ band.name }}</td>
                 <td>{{ band.genre }}</td>
                 <td>
-                    <a href="{{ path('app_band_show', {'id': band.id}) }}">show</a>
-                    <a href="{{ path('app_band_edit', {'id': band.id}) }}">edit</a>
-                    <a href="{{ path('app_band_booking', {'id': band.id}) }}">edit</a>
+                    <a href="{{ path('app_band_booking', {'id': band.id}) }}">book</a>
                 </td>
             </tr>
         {% else %}
