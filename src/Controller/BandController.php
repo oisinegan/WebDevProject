@@ -5,20 +5,26 @@ namespace App\Controller;
 use App\Entity\Band;
 use App\Form\BandType;
 use App\Repository\BandRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/band')]
+#[IsGranted('ROLE_BAND')]
 class BandController extends AbstractController
 {
     #[Route('/', name: 'app_band_index', methods: ['GET'])]
     public function index(BandRepository $bandRepository): Response
     {
-        return $this->render('band/index.html.twig', [
-            'bands' => $bandRepository->findAll(),
+//        return $this->render('band/index.html.twig', [
+//            'bands' => $bandRepository->findAll(),
+//        ]);
+        return $this->render('band/show.html.twig', [
+            'band' => $this->getUser(),
         ]);
+
     }
 
     #[Route('/new', name: 'app_band_new', methods: ['GET', 'POST'])]
