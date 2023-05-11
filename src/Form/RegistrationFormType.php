@@ -21,6 +21,7 @@ class RegistrationFormType extends AbstractType
             ->add('name')
             ->add('genre')
             ->add('bandMembers')
+            ->add('price')
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [

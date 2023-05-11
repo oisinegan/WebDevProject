@@ -30,10 +30,9 @@ class EventController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            //code to change price based on band name
-            if (str_contains($event->getBand()->getName(), 'Beetles')) {
-                $event->setPrice(100.00);
-            }
+            //code to change price based on band
+                $event->setPrice($event->getBand()->getPrice());
+
             //TODO make a check price button so user can check price before submitting the form
 
             $eventRepository->save($event, true);
