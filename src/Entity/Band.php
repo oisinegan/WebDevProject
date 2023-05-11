@@ -5,10 +5,15 @@ namespace App\Entity;
 use App\Repository\BandRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: BandRepository::class)]
-class Band
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this Username')]
+class Band implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -21,8 +26,26 @@ class Band
     #[ORM\Column(length: 255)]
     private ?string $genre = null;
 
-    #[ORM\OneToMany(mappedBy: 'band', targetEntity: BandMember::class)]
-    private Collection $bandMembers;
+    //    #[ORM\OneToMany(mappedBy: 'band', targetEntity: BandMember::class)]
+    //    private Collection $bandMembers;
+
+
+
+    #[ORM\Column(length: 255)]
+    private ?string $password = null;
+
+
+    #[ORM\Column(length: 255)]
+    private ?string $BandMembers = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $email = null;
+
+
+
+
+
+
 
     #[ORM\OneToMany(mappedBy: 'band', targetEntity: BandSong::class)]
     private Collection $bandSongs;
@@ -67,41 +90,36 @@ class Band
         return $this;
     }
 
-    /**
-     * @return Collection<int, BandMember>
-     */
-    public function getBandMembers(): Collection
-    {
-        return $this->bandMembers;
-    }
 
 
-    public function addBandMember(BandMember $bandMember): self
-    {
-        if (!$this->bandMembers->contains($bandMember)) {
-            $this->bandMembers->add($bandMember);
-            $bandMember->setBand($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBandMember(BandMember $bandMember): self
-    {
-        if ($this->bandMembers->removeElement($bandMember)) {
-            // set the owning side to null (unless already changed)
-            if ($bandMember->getBand() === $this) {
-                $bandMember->setBand(null);
-            }
-        }
-
-        return $this;
-    }
+    //
+    //    public function addBandMember(BandMember $bandMember): self
+    //    {
+    //        if (!$this->bandMembers->contains($bandMember)) {
+    //            $this->bandMembers->add($bandMember);
+    //            $bandMember->setBand($this);
+    //        }
+    //
+    //        return $this;
+    //    }
+    //
+    //    public function removeBandMember(BandMember $bandMember): self
+    //    {
+    //        if ($this->bandMembers->removeElement($bandMember)) {
+    //            // set the owning side to null (unless already changed)
+    //            if ($bandMember->getBand() === $this) {
+    //                $bandMember->setBand(null);
+    //            }
+    //        }
+    //
+    //        return $this;
+    //    }
 
     public function __toString(): string
     {
         return $this->name;
     }
+
 
     /**
      * @return Collection<int, BandSong>
@@ -117,9 +135,37 @@ class Band
             $this->bandSongs->add($bandSong);
             $bandSong->setBand($this);
         }
+    }
+
+    public function getRoles(): array
+    {
+        return ['ROLE_BAND'];
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->id;
+    }
+
+
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
 
         return $this;
     }
+
 
     public function removeBandSong(BandSong $bandSong): self
     {
@@ -129,9 +175,22 @@ class Band
                 $bandSong->setBand(null);
             }
         }
+    }
+    public function getBandMembers(): string
+    {
+        return $this->BandMembers;
+    }
+
+
+
+    public function setBandMembers(string $BandMembers): self
+    {
+        $this->BandMembers = $BandMembers;
+
 
         return $this;
     }
+
 
     /**
      * @return Collection<int, Event>
@@ -147,9 +206,21 @@ class Band
             $this->events->add($event);
             $event->setBand($this);
         }
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
 
         return $this;
     }
+
 
     public function removeEvent(Event $event): self
     {
@@ -166,5 +237,4 @@ class Band
     /**
      * @return Collection<int, Event>
      */
-
 }
