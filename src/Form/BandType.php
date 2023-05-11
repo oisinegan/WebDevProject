@@ -16,6 +16,7 @@ class BandType extends AbstractType
             ->add('genre')
             ->add('password')
             ->add('bandMembers')
+            ->add('price')
         ;
     }
 

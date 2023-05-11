@@ -10,6 +10,7 @@
         <tr>
             <th>Name</th>
             <th>Genre</th>
+            <th>hiring cost</th>
 
             <th>booking</th>
         </tr>
@@ -19,8 +20,9 @@
             <tr>
                 <td>{{ band.name }}</td>
                 <td>{{ band.genre }}</td>
+                <td>{{ band.price }}</td>
                 <td>
-                    <a href="{{ path('app_band_booking', {'id': band.id}) }}">book</a>
+                    <a href="{{ path('app_customer_booking') }}">book</a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +33,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_band_new') }}">Create new</a>
+
+{#    <a href="{{ path('app_band_new', {'id': user.id}) }}">Create new</a>#}
 {% endblock %}

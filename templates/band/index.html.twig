@@ -11,6 +11,7 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Genre</th>
+                <th>Hiring Price</th>
 
                 <th>actions</th>
             </tr>
@@ -21,6 +22,7 @@
                 <td>{{ band.id }}</td>
                 <td>{{ band.name }}</td>
                 <td>{{ band.genre }}</td>
+                <td>{{ band.price }}</td>
                 <td>
                     <a href="{{ path('app_band_show', {'id': band.id}) }}">show</a>
                     <a href="{{ path('app_band_edit', {'id': band.id}) }}">edit</a>
