@@ -7,6 +7,22 @@
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
         {% endblock %}
+        <h2>
+            <ul>
+                <li>
+                    <a href="{{ path('app_default') }}"> Home </a>
+                </li>
+                <li>
+                    <a href="{{ path('app_customer') }}"> Customer </a>
+                </li>
+                <li>
+                    <a href="{{ path('app_band') }}"> Band </a>
+                </li>
+                <li>
+                    <a href="{{ path('app_default') }}"> Manager </a>
+                </li>
+            </ul>
+        </h2>
 
         <style>
             body {
@@ -15,6 +31,10 @@
 
             h1 {
                 color: red;
+            }
+
+            h2 li {
+                display: inline-block;
             }
         </style>
 
