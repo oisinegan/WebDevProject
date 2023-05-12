@@ -1,56 +1,51 @@
 {% extends 'base.html.twig' %}
 
-
-
-
 {% block title %}Band hire{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            padding: 1rem;
+        }
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="example-wrapper">
+        <h1>Band booking website! ✅</h1>
 
-<div class="example-wrapper">
+        <h2>Customer</h2>
+        <ul>
+            <li><a href="{{ path('app_customer') }}">Customer home page (via login)</a></li>
+            <li><a href="{{ path('app_register_user') }}">Register customer</a></li>
+        </ul>
 
-    <h1>Welcome to Book-A-Band! ✅</h1>
+        <h2>Band</h2>
+        <ul>
+            <li><a href="{{ path('app_band') }}">Band home page (via login)</a></li>
+            <li><a href="{{ path('app_register_band') }}">Register band</a></li>
+        </ul>
 
-    <h2>
-        Customer
-    </h2>
-    <ul>
-        <li>
+        <h2>Manager</h2>
+        <ul>
+            <li>Login:</li>
+            <li>Register:</li>
+        </ul>
 
-            <a href="{{ path('app_customer') }}"> Customer home page (via login) </a>
-        </li>
-        <li>
-
-
-            <a href="{{ path('app_register_user') }}">Register customer</a>
-
-        </li>
-    </ul>
-    <h2>
-        Band
-    </h2>
-    <li>
-        <a href="{{ path('app_band') }}"> Band home page (via login) </a>
-    </li>
-    <li>
-
-        <a href="{{ path('app_register_band') }}"> Register band</a>
-    </li>
-    <h2>
-        Manager
-    </h2>
-    <li>
-           <a href="{{ path('app_manager') }}"> Manager home page (via login) </a>
-    </li>
-    <li>
-               <a href="{{ path('app_register_manager') }}"> Register manager</a>
-
-    </li>
-
-</div>
+        <h2>Contact Us</h2>
+        <ul>
+            <li><a href="{{ path('app_contact') }}">Contact Us</a></li>
+        </ul>
+    </div>
 {% endblock %}
