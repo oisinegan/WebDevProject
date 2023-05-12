@@ -38,13 +38,6 @@ class AppFixtures extends Fixture
         $s1 = new Song();
         $s1->setName("Wedding song");
 
-<<<<<<< Updated upstream
-        $manager->persist($band1);
-        $manager->persist($bm1);
-        $manager->persist($bm2);
-        $manager->flush();
-    }
-=======
                 $bm2 = new BandMember();
                 $bm2->setFirstName("Tom");
                 $bm2->setLastName("evans");
@@ -99,5 +92,4 @@ class AppFixtures extends Fixture
 
                 $manager->flush();
         }
->>>>>>> Stashed changes
 }
