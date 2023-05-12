@@ -29,6 +29,9 @@ class AppFixtures extends Fixture
                 $customer1 . setPassword("password");
                 $customer1 . setRole("customer");
 
+
+        $s1 = new Song();
+        $s1->setName("Wedding song");
                 $band1 = new Band();
                 $band1->setName("The wedding singers");
                 $band1->setGenre("pop");
@@ -73,6 +76,17 @@ class AppFixtures extends Fixture
 
 
                 $user1->setRole("ROLE_CUSTOMER");
+
+                $manager1 = new Manager();
+                $manager1->setFirstName("Test manager");
+                $manager1->setEmail("user@gmail.com");
+                $passManager = "pass";
+                $encodedPasswordUser = $this->passwordHasher->hashPassword($manager1, $passManager);
+
+                $manager1->setPassword($encodedPasswordUser);
+
+
+                $manager1->setRole("ROLE_MANAGER");
 
 
                 $manager->persist($band1);
