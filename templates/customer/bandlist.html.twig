@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List Of Bands{% endblock %}
+
+{% block body %}
+    <h1>Band listing</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Genre</th>
+            <th>hiring cost</th>
+
+            <th>booking</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for band in bands %}
+            <tr>
+                <td>{{ band.name }}</td>
+                <td>{{ band.genre }}</td>
+                <td>{{ band.price }}</td>
+                <td>
+                    <a href="{{ path('app_customer_booking') }}">book</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{#    <a href="{{ path('app_band_new', {'id': user.id}) }}">Create new</a>#}
+{% endblock %}

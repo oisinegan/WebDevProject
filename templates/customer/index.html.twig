@@ -9,12 +9,16 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Hello {{ user.name }}! ✅</h1>
 
-    This friendly message is coming from:
+    Check bands and events:
     <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/jesse/OneDrive/Desktop/Year 3/oodp/Project/WebDevProject/src/Controller/CustomerController.php'|file_link(0) }}">src/Controller/CustomerController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/jesse/OneDrive/Desktop/Year 3/oodp/Project/WebDevProject/templates/customer/index.html.twig'|file_link(0) }}">templates/customer/index.html.twig</a></code></li>
+        <li><a href="{{ path('app_customer_booking') }}">Book event</a></li>
+        <li><a href="{{ path('app_customer_bandList') }}">List of bands</a></li>
+        <li><a href="{{ path('app_user_show', {'id': user.id}) }}">your information</a></li>
     </ul>
+
+
+    <a href="{{ path('app_logout') }}"> <button>LOG OUT</button></a>
 </div>
 {% endblock %}

@@ -4,39 +4,46 @@ namespace App\DataFixtures;
 
 use App\Entity\Band;
 use App\Entity\BandMember;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
-    public function load(ObjectManager $manager): void
-    {
-        // $product = new Product();
-        // $manager->persist($product);
+        private UserPasswordHasherInterface $passwordHasher;
+        public function __construct(UserPasswordHasherInterface $passwordHasher)
+        {
+                $this->passwordHasher = $passwordHasher;
+        }
 
-        $band1 = new Band();
-        $band1->setName("The wedding singers");
-        $band1->setGenre("pop");
+        public function load(ObjectManager $manager): void
+        {
 
-        $bm1 = new BandMember();
-        $bm1->setFirstName("Bob");
-        $bm1->setLastName("evans");
-        $bm1->setEmail("bob@gmail.com");
-        $bm1->setPassword("bob");
-        $bm1->setBandRole("Singer");
-        $bm1->setBand($band1);
+                // $product = new Product();
+                // $manager->persist($product);
 
-        $bm2 = new BandMember();
-        $bm2->setFirstName("Tom");
-        $bm2->setLastName("evans");
-        $bm2->setEmail("tom@gmail.com");
-        $bm2->setPassword("tom");
-        $bm2->setBandRole("Singer");
-        $bm2->setBand($band1);
+                $customer1 = new User();
+                $customer1 . setName("John");
+                $customer1 . setEmail("John@gmail.com");
+                $customer1 . setPassword("password");
+                $customer1 . setRole("customer");
 
 
         $s1 = new Song();
         $s1->setName("Wedding song");
+                $band1 = new Band();
+                $band1->setName("The wedding singers");
+                $band1->setGenre("pop");
+
+
+                $bm1 = new BandMember();
+                $bm1->setFirstName("Bob");
+                $bm1->setLastName("evans");
+                $bm1->setEmail("bob@gmail.com");
+                $bm1->setPassword("bob");
+                $bm1->setBandRole("Singer");
+                //        $bm1->setBand($band1);
 
                 $bm2 = new BandMember();
                 $bm2->setFirstName("Tom");
