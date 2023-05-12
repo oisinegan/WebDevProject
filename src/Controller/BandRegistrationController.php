@@ -14,9 +14,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class RegistrationController extends AbstractController
+class BandRegistrationController extends AbstractController
 {
-    #[Route('/registerBand', name: 'app_register')]
+    #[Route('/registerBand', name: 'app_register_band')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         $user = new Band();

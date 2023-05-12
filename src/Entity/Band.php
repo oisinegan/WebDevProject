@@ -53,6 +53,9 @@ class Band implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'band', targetEntity: Event::class)]
     private Collection $events;
 
+    #[ORM\Column]
+    private ?float $price = null;
+
 
     public function __construct()
     {
@@ -206,6 +209,7 @@ class Band implements UserInterface, PasswordAuthenticatedUserInterface
             $this->events->add($event);
             $event->setBand($this);
         }
+        return $this->events;
     }
 
     public function getEmail(): ?string
@@ -237,4 +241,16 @@ class Band implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, Event>
      */
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
 }

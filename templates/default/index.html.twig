@@ -14,7 +14,7 @@
 
 <div class="example-wrapper">
 
-    <h1>Band booking website! ✅</h1>
+    <h1>Welcome to Book-A-Band! ✅</h1>
 
     <h2>
         Customer
@@ -35,20 +35,21 @@
         Band
     </h2>
     <li>
-        <a href="{{ path('app_band_index') }}"> Band home page (via login) </a>
+        <a href="{{ path('app_band') }}"> Band home page (via login) </a>
     </li>
     <li>
 
-        <a href="{{ path('app_register') }}"> Register band</a>
+        <a href="{{ path('app_register_band') }}"> Register band</a>
     </li>
     <h2>
         Manager
     </h2>
     <li>
-        Login:
+           <a href="{{ path('app_manager') }}"> Manager home page (via login) </a>
     </li>
     <li>
-        Register:
+               <a href="{{ path('app_register_manager') }}"> Register manager</a>
+
     </li>
 
 </div>

@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[IsGranted('ROLE_BAND')]
 class BandController extends AbstractController
 {
-    #[Route('/', name: 'app_band_index', methods: ['GET'])]
+    #[Route('/', name: 'app_band', methods: ['GET'])]
     public function index(BandRepository $bandRepository): Response
     {
 //        return $this->render('band/index.html.twig', [

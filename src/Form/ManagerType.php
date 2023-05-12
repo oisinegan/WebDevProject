@@ -2,28 +2,30 @@
 
 namespace App\Form;
 
-use App\Entity\Band;
+use App\Entity\Manager;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class BandType extends AbstractType
+class ManagerType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('genre')
+            ->add('firstName')
+            ->add('lastName')
+            ->add('Email')
             ->add('password')
-            ->add('bandMembers')
-            ->add('price')
+            ->add('bandRole')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Band::class,
+            'data_class' => Manager::class,
         ]);
     }
 }
