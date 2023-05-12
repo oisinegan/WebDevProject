@@ -27,6 +27,14 @@
                 <th>Role</th>
                 <td>{{ user.role }}</td>
             </tr>
+            <tr>
+                <th>Events</th>
+                <td>
+                    {% for event in user.event %}
+                        {{ event }}<br>
+                    {% endfor %}
+                </td>
+            </tr>
         </tbody>
     </table>
 

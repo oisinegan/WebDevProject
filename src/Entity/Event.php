@@ -16,8 +16,12 @@ class Event
     #[ORM\Column]
     private ?\DateTimeImmutable $StartTime = null;
 
+    private String $startStr = '';
+
     #[ORM\Column]
     private ?\DateTimeImmutable $EndTime = null;
+
+    private String $endStr = '';
 
     #[ORM\Column]
     private ?float $price = null;
@@ -27,6 +31,9 @@ class Event
 
     #[ORM\ManyToOne(inversedBy: 'event')]
     private ?Band $band = null;
+
+    #[ORM\ManyToOne(inversedBy: 'event')]
+    private ?User $user = null;
 
     public function getId(): ?int
     {
@@ -41,7 +48,6 @@ class Event
     public function setStartTime(\DateTimeImmutable $StartTime): self
     {
         $this->StartTime = $StartTime;
-
         return $this;
     }
 
@@ -91,5 +97,23 @@ class Event
         $this->band = $band;
 
         return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function __toString() {
+        $this->startStr = $this->StartTime->format('Y-m-d H:i:s');
+        $this->endStr = $this->EndTime->format('Y-m-d H:i:s');
+        return "event by " . $this->band->getName(). " , hosted at ". $this->location. ", Start time: ". $this->startStr. ", End time: ". $this->endStr. ", Price: ". $this->price;
     }
 }

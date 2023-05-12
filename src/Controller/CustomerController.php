@@ -62,6 +62,7 @@ class CustomerController extends AbstractController
 
             //code to change price based on band
             $event->setPrice($event->getBand()->getPrice());
+            $event->setUser($this->getUser());
 
             //TODO make a check price button so user can check price before submitting the form
 
