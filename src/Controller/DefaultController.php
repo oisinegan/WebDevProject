@@ -15,4 +15,18 @@ class DefaultController extends AbstractController
             'controller_name' => 'DefaultController',
         ]);
     }
+
+    #[Route('/contact-us', name: 'app_contact')]
+    public function contactUs(): Response
+    {
+        return $this->render('default/contact_us.html.twig');
+    }
+
+
+    #[Route('/privacy-policy', name: 'app_privacy_policy')]
+    public function privacyPolicy(): Response
+    {
+        return $this->render('default/privacy_policy.html.twig');
+    }
+
 }
