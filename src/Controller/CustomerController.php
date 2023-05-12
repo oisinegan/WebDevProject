@@ -67,7 +67,7 @@ class CustomerController extends AbstractController
 
             $eventRepository->save($event, true);
 
-            return $this->redirectToRoute('app_user_show', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_user_show', ['id'=>$this->getUser()->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('customer/eventBooking.html.twig', [
