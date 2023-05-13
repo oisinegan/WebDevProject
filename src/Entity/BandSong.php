@@ -19,6 +19,9 @@ class BandSong
     #[ORM\ManyToOne(inversedBy: 'bandSongs')]
     private ?Band $band = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -46,5 +49,21 @@ class BandSong
         $this->band = $band;
 
         return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function __toString() {
+        return "". $this->name;
     }
 }

@@ -12,8 +12,9 @@ class BandSongType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('song')
-            ->add('band')
+//            ->add('song')
+//            ->add('band')
+            ->add('name')
         ;
     }
 

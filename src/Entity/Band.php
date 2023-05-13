@@ -138,6 +138,7 @@ class Band implements UserInterface, PasswordAuthenticatedUserInterface
             $this->bandSongs->add($bandSong);
             $bandSong->setBand($this);
         }
+        return $this;
     }
 
     public function getRoles(): array

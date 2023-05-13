@@ -21,8 +21,12 @@ class BandController extends AbstractController
 //        return $this->render('band/index.html.twig', [
 //            'bands' => $bandRepository->findAll(),
 //        ]);
+
+        $band = $this->getUser();
+
         return $this->render('band/show.html.twig', [
-            'band' => $this->getUser(),
+            'band' => $band,
+            'bandSongs' => $band->getBandSongs(),
         ]);
 
     }
@@ -49,9 +53,10 @@ class BandController extends AbstractController
     #[Route('/{id}', name: 'app_band_show', methods: ['GET'])]
     public function show(Band $band): Response
     {
-        return $this->render('band/show.html.twig', [
+        /*return $this->render('band/show.html.twig', [
             'band' => $band,
-        ]);
+            'bandSongs' => $band->getBandSongs(),
+        ]);*/
     }
 
     #[Route('/{id}/edit', name: 'app_band_edit', methods: ['GET', 'POST'])]
@@ -63,7 +68,7 @@ class BandController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $bandRepository->save($band, true);
 
-            return $this->redirectToRoute('app_band_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_band', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('band/edit.html.twig', [

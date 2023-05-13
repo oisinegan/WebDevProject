@@ -28,6 +28,15 @@
                 <td>{{ band.price }}</td>
 
             </tr>
+            <tr>
+                <th>List of Songs</th>
+            </tr>
+            <tr>
+                <td>{% for bandSong in band.bandSongs %}
+                        {{ bandSong }}<br>
+                    {% endfor %}</td>
+
+            </tr>
 
         </tbody>
     </table>
@@ -35,6 +44,7 @@
 
 
     <a href="{{ path('app_band_edit', {'id': band.id}) }}">edit</a>
+    <a href="{{ path('app_band_song_new', {'id': band.id}) }}">Add band songs</a>
    <a href="{{ path('app_logout') }}"> <button>LOG OUT</button></a>
 
 

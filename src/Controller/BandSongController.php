@@ -21,7 +21,7 @@ class BandSongController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_band_song_new', methods: ['GET', 'POST'])]
+    #[Route('/{id}', name: 'app_band_song_new', methods: ['GET', 'POST'])]
     public function new(Request $request, BandSongRepository $bandSongRepository): Response
     {
         $bandSong = new BandSong();
@@ -29,14 +29,18 @@ class BandSongController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $bandSong->setBand($this->getUser());
+            $this->getUser()->addBandSong($bandSong);
             $bandSongRepository->save($bandSong, true);
 
-            return $this->redirectToRoute('app_band_song_index', [], Response::HTTP_SEE_OTHER);
+
+            return $this->redirectToRoute('app_band', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('band_song/new.html.twig', [
             'band_song' => $bandSong,
             'form' => $form,
+            'band' => $this->getUser(),
         ]);
     }
 
