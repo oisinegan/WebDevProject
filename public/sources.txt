@@ -1,2 +1,5 @@
-here is the link to google maps where i got the location of the 3 arena
+here is the link to google maps where I got the location of the 3 arena
 https://www.google.com/maps/place/3Arena/@53.3474995,-6.2310827,17z/data=!3m1!4b1!4m6!3m5!1s0x48670ef2ba5bd0ff:0xc462cb2728687754!8m2!3d53.3474963!4d-6.2285078!16s%2Fm%2F04n61f5
+
+getLocation() function and HTML Geolocation API
+https://www.w3schools.com/html/tryit.asp?filename=tryhtml5_geolocation
