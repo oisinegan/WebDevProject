@@ -32,7 +32,7 @@ class DefaultController extends AbstractController
     #[Route('/location', name: 'app_default')]
     public function find(): Response
     {
-        return $this->render('location/loaction.html.twig', [
+        return $this->render('location/location.html.twig', [
             'controller_name' => 'DefaultController',
         ]);
     }
