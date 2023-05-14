@@ -18,13 +18,13 @@
 
         function showMap(position) {
 
-            var myLatLng = {lat: position.coords.latitude, lng: position.coords.longitude}; // specify the latitude and longitude
+            var LatitudeLongitude = {lat: position.coords.latitude, lng: position.coords.longitude}; // specify the latitude and longitude
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 4,
-                center: myLatLng
+                center: LatitudeLongitude
             });
             var marker = new google.maps.Marker({
-                position: myLatLng,
+                position: LatitudeLongitude,
                 map: map,
                 title: 'Coordinates'
             });
@@ -33,9 +33,9 @@
 
 
 
-<p>Click the button to get your location to help decided on booking location information.</p>
+<p>Click the button to get your location to help decide on booking location information.</p>
 
-<button onclick="getLocation()">Get Location</button>
+<button onclick="getLocation()">Get your Location</button>
 
 <p id="demo"></p>
 
