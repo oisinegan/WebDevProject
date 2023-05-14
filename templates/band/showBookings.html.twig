@@ -7,7 +7,6 @@
     <table>
         <tr>
             <th>Location</th>
-            <th>Customer name</th>
             <th>Start date</th>
             <th>End date</th>
             <th>Start Time</th>
@@ -17,7 +16,6 @@
     {% for event in events  %}
         <tr>
             <td>  {{ event.location }}</td>
-            <td>  {{ event.user.name }}</td>
             <td>  {{ event.StartTime.format('Y-m-d') }}</td>
             <td>  {{ event.EndTime.format('Y-m-d') }}</td>
             <td>  {{ event.StartTime.format('H:i') }}</td>
