@@ -29,4 +29,10 @@ class DefaultController extends AbstractController
         return $this->render('default/privacy_policy.html.twig');
     }
 
+    #[Route('/getLocation', name: 'app_location')]
+    public function location(): Response
+    {
+        return $this->render('default/getLocation.html.twig');
+    }
+
 }

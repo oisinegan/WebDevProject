@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Get Location{% endblock %}
+{% block body %}
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcjBajn0t7EJTvXcL5TNznAJ0WLB3q52Q"></script>
+
+    <script>
+        var x = document.getElementById("demo");
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+
+            var myLatLng = {lat: position.coords.latitude, lng: position.coords.longitude}; // specify the latitude and longitude
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 4,
+                center: myLatLng
+            });
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: 'Coordinates'
+            });
+        }
+    </script>
+
+
+
+<p>Click the button to get your coordinates.</p>
+
+<button onclick="getLocation()">Get Location</button>
+
+<p id="demo"></p>
+
+<div id="map" style="height: 400px;"></div>
+{% endblock %}
