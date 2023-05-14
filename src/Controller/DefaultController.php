@@ -37,6 +37,7 @@ class DefaultController extends AbstractController
     public function location(): Response
     {
         return $this->render('default/getLocation.html.twig');
+    }
     #[Route('/location', name: 'app_default')]
     public function find(): Response
     {
@@ -44,6 +45,4 @@ class DefaultController extends AbstractController
             'controller_name' => 'DefaultController',
         ]);
     }
-
-}
 }
