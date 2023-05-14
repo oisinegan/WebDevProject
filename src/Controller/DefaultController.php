@@ -21,7 +21,11 @@ class DefaultController extends AbstractController
     {
         return $this->render('default/contact_us.html.twig');
     }
-
+    #[Route('/About-us', name: 'app_About-us')]
+    public function aboutUs(): Response
+    {
+        return $this->render('default/about_us.html.twig');
+    }
 
     #[Route('/privacy-policy', name: 'app_privacy_policy')]
     public function privacyPolicy(): Response
