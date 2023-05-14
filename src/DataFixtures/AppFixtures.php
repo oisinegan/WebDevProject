@@ -5,6 +5,8 @@ namespace App\DataFixtures;
 use App\Entity\Band;
 use App\Entity\BandMember;
 use App\Entity\User;
+use App\Entity\Song;
+use App\Entity\Manager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -24,10 +26,10 @@ class AppFixtures extends Fixture
                 // $manager->persist($product);
 
                 $customer1 = new User();
-                $customer1 . setName("John");
-                $customer1 . setEmail("John@gmail.com");
-                $customer1 . setPassword("password");
-                $customer1 . setRole("customer");
+                $customer1->setName("John");
+                $customer1->setEmail("John@gmail.com");
+                $customer1->setPassword("password");
+                $customer1->setRole("customer");
 
 
         $s1 = new Song();
@@ -62,7 +64,7 @@ class AppFixtures extends Fixture
                 $band1->setEmail("TheWeddingSingers@gmail.com");
                 $pass = "pass";
                 $encodedPassword = $this->passwordHasher->hashPassword($band1, $pass);
-
+                $band1->setPrice(100);
                 $band1->setPassword($encodedPassword);
                 $band1->setBandMembers($bm1->getFirstName() . " " . $bm1->getLastName() . ", " . $bm2->getFirstName() . " " . $bm2->getLastName());
 
@@ -86,7 +88,7 @@ class AppFixtures extends Fixture
                 $manager1->setPassword($encodedPasswordUser);
 
 
-                $manager1->setRole("ROLE_MANAGER");
+//                $manager1->setRole("ROLE_MANAGER");
 
 
                 $manager->persist($band1);
@@ -96,6 +98,7 @@ class AppFixtures extends Fixture
                 $manager->persist($customer1);
 
                 $manager->persist($user1);
+
 
                 $manager->flush();
         }

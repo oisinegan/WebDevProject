@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bookings{% endblock %}
+
+{% block body %}
+    <h1>Bookings for {{ band }}</h1>
+    <table>
+        <tr>
+            <th>Location</th>
+            <th>Customer name</th>
+            <th>Start date</th>
+            <th>End date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Price</th>
+        </tr>
+    {% for event in events  %}
+        <tr>
+            <td>  {{ event.location }}</td>
+            <td>  {{ event.user.name }}</td>
+            <td>  {{ event.StartTime.format('Y-m-d') }}</td>
+            <td>  {{ event.EndTime.format('Y-m-d') }}</td>
+            <td>  {{ event.StartTime.format('H:i') }}</td>
+            <td>  {{ event.EndTime.format('H:i') }}</td>
+            <td>  {{ event.price }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

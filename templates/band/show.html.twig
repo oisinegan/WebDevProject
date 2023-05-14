@@ -46,6 +46,7 @@
     <a href="{{ path('app_band_edit', {'id': band.id}) }}">edit</a>
     <a href="{{ path('app_band_song_new', {'id': band.id}) }}">Add band songs</a>
    <a href="{{ path('app_logout') }}"> <button>LOG OUT</button></a>
+    <a href="{{ path('app_band_bookings') }}"> <button>View bookings</button></a>
 
 
     {{ include('band/_delete_form.html.twig') }}
