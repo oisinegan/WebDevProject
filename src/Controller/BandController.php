@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Band;
 use App\Form\BandType;
 use App\Repository\BandRepository;
+use App\Repository\EventRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,7 +31,20 @@ class BandController extends AbstractController
         ]);
 
     }
+    #[Route('/bookings', name: 'app_band_bookings')]
+    public function bandBookings( EventRepository $eventRepository ): Response
+    {
+          $band = $this->getUser();
+          $events = $eventRepository->findAll();
 
+
+
+
+        return $this->render('band/showBookings.html.twig', [
+            'events' => $events,
+            'band' => $band
+        ]);
+    }
     #[Route('/new', name: 'app_band_new', methods: ['GET', 'POST'])]
     public function new(Request $request, BandRepository $bandRepository): Response
     {
@@ -86,5 +100,7 @@ class BandController extends AbstractController
 
         return $this->redirectToRoute('app_band_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
 }
 //comment
