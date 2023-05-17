@@ -38,7 +38,7 @@ class DefaultController extends AbstractController
     {
         return $this->render('default/getLocation.html.twig');
     }
-    #[Route('/location', name: 'app_default')]
+    #[Route('/location', name: 'app_3Arena_location')]
     public function find(): Response
     {
         return $this->render('location/location.html.twig', [
@@ -46,3 +46,5 @@ class DefaultController extends AbstractController
         ]);
     }
 }
+
+//final commit
